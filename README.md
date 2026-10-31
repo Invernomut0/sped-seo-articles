@@ -16,6 +16,16 @@ A comprehensive guide covering the 3-phase AI workflow for IEP writing: PLOP, me
 
 ---
 
+### [Best AI Tools for SPED Teachers 2026: Honest Review & 10 Free Prompts](best-ai-tools-sped-teachers-2026.md)
+
+Honest review of the top AI tools for special education — including ChatGPT, Microsoft Copilot, and specialized SPED tools. Plus 10 ready-to-use prompts covering PLOP, SMART goals, SDI, accommodations, transition, and compliance.
+
+**Key takeaways:**
+- Compares tools agents actually use (free vs. paid vs. prompt-based)
+- 10 free prompts you can use right now
+- Comprehensive workflow vs. single-tool analysis
+- No subscription, one-time purchase option highlighted
+
 ---
 
 ## Other Resources
