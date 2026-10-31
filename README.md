@@ -2,6 +2,22 @@
 
 Free resources for special education teachers looking to leverage AI for faster, more compliant IEP writing.
 
+## Free Tools
+
+### [⚡ Free SPED IEP Section Generator](sped-iep-generator.html)
+
+**Try before you buy** — Generate a real IEP section (PLOP, SMART Goals, SDI, Transition, or Progress Monitoring) in under 2 minutes. Enter student info, pick a section, get your result.
+
+- 5 IEP section types (PLOP, SMART Goals, SDI, Transition, Progress Monitoring)
+- Disability category-aware output
+- Compliant with IDEA formatting standards
+- Copy-paste ready
+- No signup, no cost
+
+[Try the tool →](sped-iep-generator.html)
+
+---
+
 ## Available Articles
 
 ### [How to Write IEPs 90% Faster: A Complete AI-Powered Workflow](how-to-write-iep-faster.md)
