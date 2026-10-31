@@ -1,59 +1,51 @@
-# SPED SEO Articles
+# 📚 SPED Teacher AI Resources
 
-Free resources for special education teachers looking to leverage AI for faster, more compliant IEP writing.
-
-## Free Tools
-
-### [⚡ Free SPED IEP Section Generator](sped-iep-generator.html)
-
-**Try before you buy** — Generate a real IEP section (PLOP, SMART Goals, SDI, Transition, or Progress Monitoring) in under 2 minutes. Enter student info, pick a section, get your result.
-
-- 5 IEP section types (PLOP, SMART Goals, SDI, Transition, Progress Monitoring)
-- Disability category-aware output
-- Compliant with IDEA formatting standards
-- Copy-paste ready
-- No signup, no cost
-
-[Try the tool →](sped-iep-generator.html)
+**Free tools + paid systems for special education teachers.** Build IDEA-compliant IEPs in 60 minutes instead of 3-4 hours.
 
 ---
 
-## Available Articles
+## 🆓 Free Tools (No Signup)
 
-### [How to Write IEPs 90% Faster: A Complete AI-Powered Workflow](how-to-write-iep-faster.md)
+### [⚡ Free IEP Section Generator](sped-iep-generator.html)
+Generate a real, compliant IEP section in 60 seconds. 5 section types: PLOP, SMART Goals, SDI, Transition, Progress Monitoring. Copy-paste ready.
 
-A comprehensive guide covering the 3-phase AI workflow for IEP writing: PLOP, measurable goals, and services/compliance. Includes real time-savings data for SPED teachers.
+### [Free 10-Prompt IEP Pack](sped-free-prompt-pack.html)
+10 ready-to-use AI prompts covering PLOP, SMART goals, SDI, transition, progress monitoring, meetings, compliance, parent comms, evaluation bridge, and review.
 
-**Key takeaways:**
-- Cuts IEP writing from 3-4 hours to 60 minutes
-- Covers IDEA/FAPE/LRE compliance automatically
-- Privacy and FERPA guidance included
-- Works with any AI tool (ChatGPT, Claude, specialized SPED tools)
-
----
-
-### [Best AI Tools for SPED Teachers 2026: Honest Review & 10 Free Prompts](best-ai-tools-sped-teachers-2026.md)
-
-Honest review of the top AI tools for special education — including ChatGPT, Microsoft Copilot, and specialized SPED tools. Plus 10 ready-to-use prompts covering PLOP, SMART goals, SDI, accommodations, transition, and compliance.
-
-**Key takeaways:**
-- Compares tools agents actually use (free vs. paid vs. prompt-based)
-- 10 free prompts you can use right now
-- Comprehensive workflow vs. single-tool analysis
-- No subscription, one-time purchase option highlighted
+### [IEP Writing Checklist — 6-Section Guide](sped-iep-checklist.html)
+Step-by-step checklist with embedded AI prompts. Covers all 6 mandatory IEP sections.
 
 ---
 
-## Other Resources
+## 📖 Free Articles
 
-### [E-commerce Product Listing AI System](https://invernomut02.gumroad.com/l/ecommerce-product-listing)
+### [How to Write IEPs 90% Faster](how-to-write-iep-faster.md)
+3-phase AI workflow: PLOP → Goals → Services. Cuts 3-4 hours to 60 min. Covers IDEA/FAPE/LRE.
 
-32 AI prompts for Amazon, Shopify, and Etsy sellers. 3-phase workflow (Research → Listing → Marketing). $49 one-time.
-
-### [Complete AI Real Estate Bundle](https://invernomut02.gumroad.com/l/bundle)
-
-All 3 systems (RE + SPED + CRE) — 92 prompts, 3-phase workflows. Save $58 vs. buying individually. $99.
+### [Best AI Tools for SPED Teachers 2026](best-ai-tools-sped-teachers-2026.md)
+Honest review of tools SPED teachers actually use + 10 free prompts.
 
 ---
 
-*These articles are published under Creative Commons Attribution-NonCommercial (CC BY-NC 4.0). You can share them freely with your colleagues, but please do not sell them.*
+## 💰 Paid Systems (One-Time Purchase)
+
+### [SPED IEP AI System — $29 (was $49)](https://invernomut02.gumroad.com/l/uplrym)
+**32 prompts. 3-phase workflow (Intake → Draft → Compliance). Notion case manager. 5 databases.**
+Use code **SPED50** for 50% off → **$14.50**. This is our lowest price ever.
+
+### [SPED Teacher Quick-Start — $1](https://invernomut02.gumroad.com/l/sped-quick-start)
+10 essential prompts. The perfect entry point. Links to the full $49 system.
+
+### [Complete AI Bundle — $99](https://invernomut02.gumroad.com/l/bundle)
+All 3 systems (RE + SPED + CRE) = 92 prompts. Save $58. Use code **SPED50** → **$49.50**.
+
+---
+
+## 🔗 Cross-Links
+- [RE Listing System](https://invernomuto2.gumroad.com/l/geffl) — 32 prompts for MLS-ready listings. Use code **LAUNCH50** → $29.
+- [CRE Listing System](https://invernomuto2.gumroad.com/l/vegate) — 30 prompts for CRE descriptions + investment analysis. Use code **CRE50** → $39.
+- [E-commerce Listing System](https://invernomut02.gumroad.com/l/ecommerce-product-listing) — 32 prompts for Amazon, Shopify, Etsy. 3-phase workflow.
+
+---
+
+*Free resources published under CC BY-NC 4.0. Paid products are one-time purchases — no subscription required.*
