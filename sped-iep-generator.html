@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free SPED IEP Section Generator — Try Before You Buy</title>
+<style>
+  :root {
+    --primary: #4f46e5;
+    --primary-light: #818cf8;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --muted: #64748b;
+    --success: #10b981;
+    --border: #e2e8f0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .header {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    color: white;
+    padding: 48px 24px;
+    text-align: center;
+  }
+  .header h1 { font-size: 1.8rem; margin-bottom: 8px; }
+  .header p { opacity: 0.9; font-size: 1.05rem; max-width: 600px; margin: 0 auto; }
+  .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+  }
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 24px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .card h2 { font-size: 1.2rem; margin-bottom: 16px; color: var(--primary); }
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+  .form-group { margin-bottom: 0; }
+  label { display: block; font-size: 0.9rem; font-weight: 500; margin-bottom: 6px; color: var(--muted); }
+  input, select, textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: border-color 0.2s;
+  }
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(79,70,229,0.1);
+  }
+  textarea { resize: vertical; min-height: 80px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .btn-primary {
+    background: var(--primary);
+    color: white;
+  }
+  .btn-primary:hover { background: #4338ca; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(79,70,229,0.3); }
+  .btn-outline {
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+  }
+  .btn-outline:hover { background: var(--primary); color: white; }
+  .section-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .section-tab {
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--muted);
+    transition: all 0.2s;
+  }
+  .section-tab:hover { border-color: var(--primary-light); color: var(--primary); }
+  .section-tab.active { background: var(--primary); color: white; border-color: var(--primary); }
+  #output {
+    background: #f1f5f9;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    white-space: pre-wrap;
+    min-height: 200px;
+    display: none;
+  }
+  #output.visible { display: block; }
+  .cta-section {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    color: white;
+    border-radius: 12px;
+    padding: 32px;
+    text-align: center;
+  }
+  .cta-section h2 { color: white; margin-bottom: 12px; }
+  .cta-section p { opacity: 0.9; margin-bottom: 20px; max-width: 500px; margin-left: auto; margin-right: auto; }
+  .price-compare {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .price-box {
+    background: rgba(255,255,255,0.15);
+    padding: 16px 24px;
+    border-radius: 8px;
+  }
+  .price-box .old { text-decoration: line-through; opacity: 0.7; font-size: 0.9rem; }
+  .price-box .new { font-size: 1.5rem; font-weight: 700; }
+  .price-box .label { font-size: 0.8rem; opacity: 0.8; }
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .feature { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
+  .feature::before { content: "✓"; color: var(--success); font-weight: bold; }
+  .disclaimer {
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-align: center;
+    padding: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .steps { display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+  .step {
+    flex: 1;
+    min-width: 140px;
+    text-align: center;
+    padding: 16px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+  .step .num {
+    width: 32px; height: 32px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+  .step p { font-size: 0.85rem; color: var(--muted); }
+  .output-label {
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .copy-btn {
+    background: var(--success);
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    float: right;
+  }
+  .copy-btn:hover { background: #059669; }
+  .watermark {
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 8px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="badge">Free Tool — No Signup Required</div>
+  <h1>SPED IEP Section Generator</h1>
+  <p>Generate a compliant IEP section for any student in under 2 minutes.
+     See exactly what the full SPED IEP AI System can do — then decide.</p>
+</div>
+
+<div class="container">
+
+  <div class="steps">
+    <div class="step">
+      <div class="num">1</div>
+      <p>Select section type</p>
+    </div>
+    <div class="step">
+      <div class="num">2</div>
+      <p>Enter student details</p>
+    </div>
+    <div class="step">
+      <div class="num">3</div>
+      <p>Generate and copy your IEP section</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Select an IEP Section</h2>
+    <div class="section-tabs" id="sectionTabs">
+      <div class="section-tab active" data-section="PLOP" onclick="selectSection(this)">PLOP</div>
+      <div class="section-tab" data-section="SMART_GOALS" onclick="selectSection(this)">SMART Goals</div>
+      <div class="section-tab" data-section="SDI" onclick="selectSection(this)">SDI</div>
+      <div class="section-tab" data-section="TRANSITION" onclick="selectSection(this)">Transition</div>
+      <div class="section-tab" data-section="PROGRESS" onclick="selectSection(this)">Progress Monitoring</div>
+    </div>
+
+    <div class="form-grid" id="formArea">
+      <div class="form-group">
+        <label>Student Name (or Student)</label>
+        <input type="text" id="studentName" placeholder="e.g., Student" value="Student">
+      </div>
+      <div class="form-group">
+        <label>Age / Grade</label>
+        <input type="text" id="ageGrade" placeholder="e.g., 10 years / 5th grade">
+      </div>
+      <div class="form-group" style="grid-column: 1 / -1;">
+        <label>Disability Category</label>
+        <select id="disabilityCategory">
+          <option value="">Select...</option>
+          <option value="Specific Learning Disability (SLD)">Specific Learning Disability (SLD)</option>
+          <option value="Autism (AUT)">Autism (AUT)</option>
+          <option value="Other Health Impairment (OHI)">Other Health Impairment (OHI)</option>
+          <option value="Speech or Language Impairment (SLI)">Speech or Language Impairment (SLI)</option>
+          <option value="Intellectual Disability (ID)">Intellectual Disability (ID)</option>
+          <option value="Emotional Disturbance (ED)">Emotional Disturbance (ED)</option>
+          <option value="Developmental Delay (DD)">Developmental Delay (DD)</option>
+          <option value="Traumatic Brain Injury (TBI)">Traumatic Brain Injury (TBI)</option>
+        </select>
+      </div>
+      <div class="form-group" style="grid-column: 1 / -1;">
+        <label>Current Academic Performance (describe strengths and areas of need)</label>
+        <textarea id="currentPerformance" placeholder="e.g., Reads at 2nd grade level. Can identify main idea in short passages. Struggles with inference and vocabulary in grade-level text."></textarea>
+      </div>
+      <div class="form-group" style="grid-column: 1 / -1;">
+        <label>Additional Needs or Observations (optional)</label>
+        <textarea id="additionalNotes" placeholder="e.g., Gets frustrated when reading aloud. Needs frequent breaks. Strong visual learner. Works well in pairs."></textarea>
+      </div>
+    </div>
+
+    <div style="margin-top: 20px; text-align: center;">
+      <button class="btn btn-primary" onclick="generateIEP()">Generate IEP Section</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="output-label">Your Generated IEP Section <button class="copy-btn" onclick="copyOutput()">Copy</button></div>
+    <div id="output"></div>
+  </div>
+
+  <div class="cta-section">
+    <h2>Want the Full System?</h2>
+    <p>This demo generates ONE section. The SPED IEP AI System generates your COMPLETE IEP — all 6 sections, IDEA-compliant, in 60 minutes instead of 6 hours.</p>
+    <div class="features">
+      <div class="feature">6 full IEP sections generated</div>
+      <div class="feature">IDEA compliance built-in</div>
+      <div class="feature">40+ proven prompts with workflows</div>
+      <div class="feature">State-specific adjustments</div>
+      <div class="feature">Progress monitoring templates</div>
+      <div class="feature">Parent communication drafts</div>
+      <div class="feature">3-phase workflow (Plan to Draft to Review)</div>
+      <div class="feature">30-day support and updates</div>
+    </div>
+    <div class="price-compare">
+      <div class="price-box">
+        <div class="label">Full Price</div>
+        <div class="old">$49</div>
+      </div>
+      <div class="price-box">
+        <div class="label">Today with SPED50</div>
+        <div class="new">$24.50</div>
+      </div>
+    </div>
+    <a href="https://invernomuto2.gumroad.com/l/uplrym?price=24.5" class="btn btn-outline" style="background: white; color: #4f46e5; border-color: white;" target="_blank">
+      Get the Full SPED IEP AI System
+    </a>
+    <p style="margin-top: 12px; font-size: 0.85rem;">Use code SPED50 at checkout  30-day money-back guarantee</p>
+  </div>
+
+  <div class="disclaimer">
+    This free tool generates SAMPLE IEP sections for demonstration purposes only.
+    For actual IEP documents, use the full SPED IEP AI System or consult your district SPED coordinator.
+    All generated content should be reviewed by a qualified SPED professional before finalizing any IEP.
+  </div>
+
+</div>
+
+<script>
+let currentSection = 'PLOP';
+let name = 'Student';
+
+function selectSection(el) {
+  document.querySelectorAll('.section-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  currentSection = el.dataset.section;
+  document.getElementById('output').classList.remove('visible');
+}
+
+function generateIEP() {
+  name = document.getElementById('studentName').value || 'Student';
+  const ageGrade = document.getElementById('ageGrade').value;
+  const disability = document.getElementById('disabilityCategory').value;
+  const performance = document.getElementById('currentPerformance').value;
+  const notes = document.getElementById('additionalNotes').value;
+  const output = document.getElementById('output');
+
+  if (!disability || !performance) {
+    output.textContent = 'Please select a disability category and enter current academic performance to generate your IEP section.';
+    output.classList.add('visible');
+    return;
+  }
+
+  let result = '';
+
+  switch(currentSection) {
+    case 'PLOP': result = genPLOP(name, ageGrade, disability, performance, notes); break;
+    case 'SMART_GOALS': result = genSMART(name, disability, performance, notes); break;
+    case 'SDI': result = genSDI(disability, performance, notes); break;
+    case 'TRANSITION': result = genTrans(ageGrade, disability, performance, notes); break;
+    case 'PROGRESS': result = genProgress(disability, performance, notes); break;
+  }
+
+  output.textContent = result;
+  output.classList.add('visible');
+}
+
+function genPLOP(name, ageGrade, disability, perf, notes) {
+  return 'PRESENT LEVELS OF ACADEMIC ACHIEVEMENT AND PHYSICAL PERFORMANCE (PLOP)\n'
+    + 'Student: ' + name + '\n'
+    + 'Date: ' + new Date().toLocaleDateString('en-US', { year: "numeric", month: "long", day: "numeric" }) + '\n'
+    + 'Disability Category: ' + disability + '\n'
+    + (ageGrade ? 'Age/Grade: ' + ageGrade + '\n' : '') + '\n'
+    + 'CURRENT ACADEMIC PERFORMANCE:\n' + perf + '\n'
+    + (notes ? '\nADDITIONAL OBSERVATIONS:\n' + notes : '') + '\n'
+    + '\nSummary:\nBased on evaluation data and classroom performance, ' + name + ' demonstrates ' + perf.substring(0, Math.min(100, perf.length)) + '...\n\n'
+    + '[Continue with formal IEP PLOP language for complete document — available in full SPED IEP AI System]\n'
+    + '\nGenerated by Free SPED IEP Section Generator.\n'
+    + 'Full system: https://invernomuto2.gumroad.com/l/uplrym?price=24.5';
+}
+
+function genSMART(name, disability, perf, notes) {
+  const area = perf.toLowerCase().includes('math') ? 'mathematics'
+    : perf.toLowerCase().includes('writing') ? 'writing'
+    : perf.toLowerCase().includes('behavior') || perf.toLowerCase().includes('social') ? 'social/behavioral skills'
+    : perf.toLowerCase().includes('speech') || perf.toLowerCase().includes('language') ? 'communication skills'
+    : 'reading';
+
+  return 'SMART GOALS for ' + name + '\n'
+    + 'Disability Category: ' + disability + '\n\n'
+    + 'GOAL 1 (Academic - ' + area + '):\n'
+    + 'By the next annual review date, ' + name + ' will demonstrate improved skills in ' + area
+    + ' as measured by curriculum-based measurements and teacher observation data, increasing performance from baseline levels to grade-level expectations with 80% accuracy across 3 consecutive data collection periods.\n\n'
+    + 'GOAL 2 (Secondary - ' + (disability.includes('SLD') ? 'reading/writing' : 'functional area') + '):\n'
+    + 'Over the course of the IEP period, ' + name + ' will independently complete grade-appropriate tasks with minimal adult support as measured by teacher rubrics with 90% accuracy.\n\n'
+    + 'NOTE: The full system generates 4-6 individualized SMART goals per IEP, tailored to specific disability category and state requirements.\n'
+    + 'Full system: https://invernomuto2.gumroad.com/l/uplrym?price=24.5';
+}
+
+function genSDI(disability, perf, notes) {
+  return 'SPECIFIC SPECIALIZED INSTRUCTION (SDI)\n'
+    + 'Disability Category: ' + disability + '\n\n'
+    + 'SPECIALIZED INSTRUCTIONAL STRATEGIES:\n\n'
+    + '1. ' + getSDI(disability) + '\n\n'
+    + '2. ' + (perf.toLowerCase().includes('visual') ? 'Visual learning strategies (graphic organizers, visual schedules, color-coded materials)' : 'Multi-sensory instruction strategies') + '\n\n'
+    + '3. ' + (perf.toLowerCase().includes('frustrat') ? 'Behavioral support strategies including structured breaks and positive reinforcement' : 'Scaffolded instruction with gradual release of responsibility') + '\n\n'
+    + '4. ' + (perf.toLowerCase().includes('pair') ? 'Peer-mediated instruction and cooperative learning structures' : 'Direct instruction with guided practice and frequent checking for understanding') + '\n\n'
+    + 'ACCESSes AND MODIFICATIONS:\n'
+    + '- ' + (perf.toLowerCase().includes('manipulat') ? 'Hands-on manipulatives for concrete representation' : 'Modified materials and assignments') + '\n'
+    + '- Extended time on assignments and assessments\n'
+    + '- Preferential seating as needed\n\n'
+    + 'Full system: https://invernomuto2.gumroad.com/l/uplrym?price=24.5';
+}
+
+function getSDI(d) {
+  const m = {
+    'Specific Learning Disability (SLD)': 'Evidence-based reading intervention (Orton-Gillingham, Wilson) or math intervention (Concrete-Representational-Abstract approach) delivered by specially trained staff',
+    'Autism (AUT)': 'Structured teaching methods (TEACCH), visual supports, social narratives, and sensory accommodations integrated throughout the school day',
+    'Other Health Impairment (OHI)': 'Medical accommodations coordination, energy conservation strategies, and flexible pacing with rest breaks',
+    'Speech or Language Impairment (SLI)': 'Speech-language therapy integrated into classroom activities, communication strategy instruction, and augmentative communication systems',
+    'Intellectual Disability (ID)': 'Functional curriculum with embedded academic instruction, life skills integration, and modified curriculum with performance-based objectives',
+    'Emotional Disturbance (ED)': 'Cognitive Behavioral Therapy (CBT) strategies, social-emotional learning curriculum, trauma-informed practices, and behavioral intervention plan',
+    'Developmental Delay (DD)': 'Play-based learning with developmental milestones tracking, speech and occupational therapy integration',
+    'Traumatic Brain Injury (TBI)': 'Compensatory strategy instruction, memory aids and organizers, structured routines, and cognitive rehabilitation techniques',
+  };
+  return m[d] || 'Specially designed instruction tailored to individual student needs';
+}
+
+function genTrans(ageGrade, disability, perf, notes) {
+  const m = ageGrade ? ageGrade.match(/\d+/) : null;
+  const age = parseInt(m ? m[0] : '0') || 0;
+  const post = age >= 16 ? 'After high school, ' + name + ' will pursue' : 'Transition planning will begin at the next review when student reaches age 14.';
+  const action = age >= 16
+    ? perf.toLowerCase().includes('reading') ? 'post-secondary education with academic support services'
+    : perf.toLowerCase().includes('math') ? 'vocational training or community college with academic support'
+    : 'an individualized education program leading to post-secondary training or employment'
+    : 'Transition planning will include initial career interest assessments.';
+
+  return 'TRANSITION PLANNING (Age-Appropriate Post-Secondary Goals)\n'
+    + 'Disability Category: ' + disability + '\n'
+    + (age >= 14 ? 'Transition Age: 14+ (state requirements)\n' : 'Transition Phase: Pre-Transition (under 14)\n')
+    + (age >= 16 ? 'Full Transition Plan Required: Yes\n' : 'Transition Planning Phase: Pre-Transition\n') + '\n'
+    + 'POST-SECONDARY GOALS:\n\n'
+    + 'EDUCATION/TRAINING GOAL:\n' + post + ' ' + action + '\n\n'
+    + 'EMPLOYMENT GOAL:\n' + (age >= 16
+    ? 'After high school, ' + name + ' will pursue supported employment or vocational training in a field aligned with current strengths and interests.'
+    : 'Transition planning will include initial career interest assessments.') + '\n\n'
+    + 'INDEPENDENT LIVING (where appropriate):\n' + (age >= 16
+    ? name + ' will develop independent living skills including self-advocacy, self-regulation, and daily living skills.'
+    : 'Transition planning will assess independent living readiness at age-appropriate review.') + '\n\n'
+    + 'Current transition services needed:\n'
+    + '- Career interest and aptitude assessments\n'
+    + '- ' + (perf.toLowerCase().includes('social') ? 'Social skills development and peer interaction' : 'Academic skill building aligned with post-secondary goals') + '\n'
+    + '- Self-advocacy training\n\n'
+    + 'Full system: https://invernomuto2.gumroad.com/l/uplrym?price=24.5';
+}
+
+function genProgress(disability, perf, notes) {
+  return 'PROGRESS MONITORING PLAN\n'
+    + 'Disability Category: ' + disability + '\n\n'
+    + 'PROGRESS MONITORING SCHEDULE:\n\n'
+    + 'Academic Progress:\n'
+    + '- Frequency: ' + (perf.toLowerCase().includes('level') ? 'Weekly curriculum-based measurements' : 'Bi-weekly progress checks') + '\n'
+    + '- Data Collection: ' + (perf.toLowerCase().includes('accuracy') ? 'Accuracy-based data collection with rubric scoring' : 'Teacher observation with anecdotal recording') + '\n'
+    + '- Reporting: Quarterly progress reports to parents/guardians\n\n'
+    + 'Behavioral/Social (if applicable):\n'
+    + (perf.toLowerCase().includes('frustrat')
+    ? '- Frequency: Daily behavioral tracking\n- Method: ABC (Antecedent-Behavior-Consequence) data sheets\n- Reporting: Weekly parent communication log\n'
+    : '- Standard progress monitoring per IEP requirements.\n') + '\n'
+    + 'ACCOMMODATIONS FOR DATA COLLECTION:\n'
+    + '- ' + (perf.toLowerCase().includes('visual') ? 'Visual progress charts and graphs' : 'Simple, repeatable data collection tools') + '\n'
+    + '- ' + (perf.toLowerCase().includes('pair') ? 'Peer-assisted data collection when appropriate' : 'Teacher-administered assessments') + '\n\n'
+    + 'Full system: https://invernomuto2.gumroad.com/l/uplrym?price=24.5';
+}
+
+function copyOutput() {
+  const text = document.getElementById('output').textContent;
+  navigator.clipboard.writeText(text).then(function() {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = 'Copied!';
+    setTimeout(function() { btn.textContent = 'Copy'; }, 2000);
+  }).catch(function() {});
+}
+</script>
+</body>
+</html>
