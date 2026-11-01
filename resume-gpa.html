@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Resume Keyword Analyzer — Free Tool</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  :root {
+    --primary: #2563eb; --primary-dark: #1d4ed8; --bg: #f8fafc; --card: #ffffff;
+    --text: #1e293b; --muted: #64748b; --border: #e2e8f0; --success: #059669;
+    --warning: #d97706; --danger: #dc2626; --shadow: 0 1px 3px rgba(0,0,0,0.08);
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.6;
+    padding: 0; max-width: 860px; margin: 0 auto;
+  }
+  header {
+    background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+    color: white; padding: 36px 24px 30px; text-align: center;
+  }
+  header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  header p { font-size: 14px; opacity: 0.85; max-width: 520px; margin: 0 auto; }
+  .container { padding: 24px; }
+  .field { margin-bottom: 18px; }
+  .field label {
+    display: block; font-size: 13px; font-weight: 600;
+    color: var(--muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .field textarea {
+    width: 100%; min-height: 130px; padding: 12px 14px; border: 1.5px solid var(--border);
+    border-radius: var(--radius); font-size: 14px; font-family: inherit; resize: vertical;
+    transition: border-color 0.2s; background: var(--card);
+  }
+  .field textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--primary); color: white; border: none;
+    padding: 13px 28px; border-radius: var(--radius); font-size: 15px; font-weight: 600;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .btn:hover { background: var(--primary-dark); }
+  .btn:active { transform: scale(0.98); }
+  .divider {
+    height: 1px; background: var(--border); margin: 24px 0;
+  }
+  /* Score card */
+  .score-card {
+    background: var(--card); border: 1.5px solid var(--border); border-radius: var(--radius);
+    padding: 24px; text-align: center; box-shadow: var(--shadow); margin-bottom: 20px;
+  }
+  .score-ring {
+    width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px; font-weight: 700; color: white;
+    position: relative;
+  }
+  .score-ring svg { position: absolute; top: 0; left: 0; transform: rotate(-90deg); }
+  .score-label { font-size: 15px; font-weight: 600; color: var(--text); }
+  .score-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  /* Keyword sections */
+  .kw-section {
+    background: var(--card); border: 1.5px solid var(--border);
+    border-radius: var(--radius); padding: 18px 20px; margin-bottom: 14px; box-shadow: var(--shadow);
+  }
+  .kw-section h3 { font-size: 14px; font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+  .kw-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .kw-tag {
+    display: inline-block; padding: 4px 10px; border-radius: 20px;
+    font-size: 12px; font-weight: 500;
+  }
+  .kw-tag.matched { background: #dcfce7; color: var(--success); border: 1px solid #bbf7d0; }
+  .kw-tag.missing { background: #fef2f2; color: var(--danger); border: 1px solid #fecaca; }
+  .kw-tag.optional { background: #fffbeb; color: var(--warning); border: 1px solid #fde68a; }
+  .kw-tag.missed-opt { background: #fff7ed; color: #ea580c; border: 1px solid #fed7aa; }
+  /* Suggestions */
+  .suggestion {
+    padding: 10px 14px; background: #f0fdf4; border-left: 3px solid var(--success);
+    border-radius: 0 6px 6px 0; margin-bottom: 8px; font-size: 13px;
+  }
+  /* CTA */
+  .cta-box {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border: 1.5px solid #bfdbfe; border-left: 4px solid var(--primary);
+    border-radius: var(--radius); padding: 22px 24px; margin-top: 24px;
+  }
+  .cta-box h3 { font-size: 16px; font-weight: 700; color: var(--primary-dark); margin-bottom: 6px; }
+  .cta-box p { font-size: 13px; color: var(--text); margin-bottom: 10px; }
+  .cta-box a {
+    color: var(--primary); font-weight: 600; text-decoration: none;
+  }
+  .cta-box a:hover { text-decoration: underline; }
+  .code-badge {
+    display: inline-block; background: var(--primary); color: white;
+    padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 600;
+  }
+  /* Footer */
+  footer {
+    text-align: center; padding: 24px; font-size: 11px; color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+  .hidden { display: none; }
+  .spinner {
+    display: inline-block; width: 18px; height: 18px;
+    border: 2.5px solid rgba(255,255,255,0.3); border-top-color: white;
+    border-radius: 50%; animation: spin 0.7s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  /* Responsive */
+  @media (max-width: 600px) {
+    header { padding: 24px 16px; }
+    header h1 { font-size: 19px; }
+    .container { padding: 16px; }
+    .score-ring { width: 100px; height: 100px; font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📋 Job Resume Keyword Analyzer</h1>
+  <p>Paste your target job description and your resume. Get instant keyword matching, relevance scoring, and actionable improvement suggestions — completely free.</p>
+</header>
+
+<div class="container">
+  <div class="field">
+    <label for="jobDesc">Target Job Description</label>
+    <textarea id="jobDesc" placeholder="Paste the full job description here (from LinkedIn, Indeed, company website, etc.)&#10;&#10;Example: Senior Data Analyst — We're looking for an experienced data analyst with 3+ years of SQL, Python, and Tableau experience..."></textarea>
+  </div>
+
+  <div class="field">
+    <label for="resumeText">Your Resume / CV</label>
+    <textarea id="resumeText" placeholder="Paste your resume or CV text here&#10;&#10;Include skills, experience, education, and certifications."></textarea>
+  </div>
+
+  <button class="btn" id="analyzeBtn" onclick="analyze()">🔍 Analyze Resume Match</button>
+
+  <div class="divider"></div>
+
+  <div id="results" class="hidden">
+    <div class="score-card" id="scoreCard">
+      <!-- Score rendered by JS -->
+    </div>
+
+    <div class="kw-section" id="matchedSection">
+      <h3>✅ Matched Keywords (in your resume)</h3>
+      <div class="kw-tags" id="matchedTags"></div>
+    </div>
+
+    <div class="kw-section" id="missingSection">
+      <h3>❌ Missing Critical Keywords (prioritized)</h3>
+      <div class="kw-tags" id="missingTags"></div>
+    </div>
+
+    <div class="kw-section" id="suggestionsSection">
+      <h3>💡 Top Improvement Suggestions</h3>
+      <div id="suggestions"></div>
+    </div>
+
+    <div class="cta-box">
+      <h3>🚀 Optimize Your Resume for ANY Job</h3>
+      <p>The <strong>Resume & Career AI System</strong> generates tailored resumes, cover letters, and interview prep for any job type — automatically. 20 prompts, 3-phase workflow, ATS optimization built in.</p>
+      <p>Get 50% off with code <span class="code-badge">RESUME50</span> → <strong>$14.50</strong> (regular $29)</p>
+      <p><a href="https://invernomuto2.gumroad.com/l/resume" target="_blank" rel="noopener">→ Get the Resume & Career AI System on Gumroad</a></p>
+    </div>
+  </div>
+
+  <!-- Empty state info -->
+  <div id="emptyInfo" style="margin-top: 20px; text-align: center; color: var(--muted); font-size: 13px;">
+    <p>Enter a job description and your resume above, then click "Analyze Resume Match" to get started.</p>
+    <p style="margin-top: 8px; font-size: 12px;">This tool extracts key skills, qualifications, and requirements from any job posting and compares them against your resume. Results are approximate and meant as a quick guide — always tailor your resume carefully for each application.</p>
+  </div>
+</div>
+
+<footer>
+  <p>Free tool by <a href="https://invernomuto2.gumroad.com" target="_blank" rel="noopener" style="color: var(--primary); text-decoration: none;">Invernomuto</a> — creators of the <strong>Resume & Career AI System</strong>.</p>
+  <p style="margin-top: 4px;">This tool provides approximate keyword matching. It is not a substitute for professional career advice or a thorough resume review.</p>
+  <p style="margin-top: 4px;">© 2026</p>
+</footer>
+
+<script>
+// ─── Keyword & skill extraction ─────────────────────────────────────────
+
+const COMMON_SKILLS = [
+  'project management','data analysis','data analytics','python','sql','javascript',
+  'java','c++','c#','react','node.js','nodejs','angular','vue','php','ruby on rails',
+  'rails','docker','kubernetes','aws','azure','gcp','machine learning','deep learning',
+  'artificial intelligence','ai','machine learning','machine learning','machine learning',
+  'machine learning','machine learning','machine learning',
+  'machine learning','machine learning','machine learning',
+  'project management','agile','scrum','kanban','six sigma','lean',
+  'financial analysis','financial modeling','forecasting','budgeting',
+  'accounting','bookkeeping','tax','compliance','risk management',
+  'sales','marketing','content marketing','digital marketing','seo',
+  'social media','social media marketing','email marketing',
+  'crm','sap','oracle','salesforce','hubspot','microsoft office',
+  'excel','powerpoint','word','google sheets','google docs',
+  'communication','leadership','team management','team leadership',
+  'problem solving','critical thinking','analytical skills',
+  'customer service','customer support','account management',
+  'research','qualitative research','quantitative research',
+  'ui/ux','user experience','user interface','figma','sketch',
+  'graphic design','video editing','photo editing',
+  'supply chain','procurement','logistics','inventory management',
+  'human resources','hr','recruiting','talent acquisition',
+  'nursing','patient care','healthcare','medical',
+  'teaching','education','curriculum development','lesson planning',
+  'special education','iep','compliance','legal research',
+  'paralegal','contract review','legal writing',
+  'copywriting','technical writing','content creation',
+  'cybersecurity','information security','network administration',
+  'devops','ci/cd','git','rest api','graphql','database',
+  'mongodb','postgresql','mysql','redis','elasticsearch',
+  'statistics','regression','a/b testing','survey design',
+  'public relations','media relations','brand management',
+  'business development','strategic planning','business strategy',
+  'business intelligence','bi','tableau','power bi','looker',
+  'product management','product marketing','product launch',
+  'real estate','property management','commercial real estate',
+  'investment analysis','portfolio management','trading',
+  'writing','editing','proofreading','grammar',
+  'customer success','customer success','customer success',
+  'customer success','customer success','customer success',
+  'data science','data engineering','etl','data pipeline',
+  'etl','data pipeline','data warehouse','data lake',
+  'machine learning','natural language processing','nlp',
+  'computer vision','image processing','robotics',
+  'iot','internet of things','embedded systems',
+  'cloud computing','serverless','microservices',
+  'rest api','graphql','soap','web services',
+  'mobile development','ios','android','flutter','react native',
+  'test automation','qa','selenium','cypress','jest',
+  'infrastructure','terraform','ansible','puppet',
+  'monitoring','grafana','prometheus','datadog',
+  'communication','stakeholder management','presentation skills',
+  'presentation skills','presentation skills','presentation skills',
+  'time management','multitasking','organization','organizational skills',
+  'attention to detail','detail-oriented','detail oriented',
+  'adaptability','adaptability','adaptability',
+  'adaptability','adaptability','adaptability',
+  'creativity','creative','innovation','innovative',
+  'initiative','self-starter','proactive','proactive',
+  'cross-functional','cross functional','cross functional',
+  'remote work','distributed team','async communication',
+  'bilingual','multilingual','translation','interpretation',
+  'foreign language','language skills',
+  'grant writing','fundraising','philanthropy','nonprofit',
+  'budget management','cost analysis','roi','roi analysis',
+  'change management','process improvement','process optimization',
+  'quality assurance','quality control','iso','iso 9001',
+  'supply chain','logistics','procurement','purchasing',
+  'vendor management','supplier management','contract negotiation',
+  'negotiation','stakeholder management','relationship building',
+  'business analysis','requirements gathering','user stories',
+  'jira','confluence','trello','asana','notion','slack',
+  'microsoft teams','zoom','google meetings',
+  'power bi','tableau','looker','snowflake','bigquery',
+  'snowflake','bigquery','redshift','spark','hadoop',
+  'pandas','numpy','tensorflow','pytorch','keras',
+  'pandas','numpy','tensorflow','pytorch','keras',
+  'r language','matlab','sas','spss','stata',
+  'jupyter','colab','rstudio','jupyter','colab',
+  'machine learning','deep learning','neural networks',
+  'computer vision','natural language processing','nlp',
+  'reinforcement learning','generative ai','llm',
+  'prompt engineering','rag','fine-tuning','transfer learning',
+  'wedding planning','event planning','venue management',
+  'catering','floral design','photography','videography',
+  'budget tracking','guest list management','timeline management',
+  'vendor negotiation','day-of coordination','bridal consultation',
+  'cake design','decor','lighting','music planning',
+  'paralegal','contract review','legal research','legal writing',
+  'litigation support','document review','discovery','depositions',
+  'filing procedures','compliance checking','case management',
+  'intake forms','client relations','billing procedures',
+  'mediation','arbitration','intellectual property','patent law',
+  'employment law','real estate law','family law','estate planning',
+  'trusts and estates','probate','bankruptcy','immigration law',
+  'administrative law','regulatory compliance','employment law',
+  'resume optimization','ats optimization','cover letter writing',
+  'interview preparation','career coaching','networking strategy',
+  'linkedin optimization','job search strategy','salary negotiation',
+  'career transition','skill gap analysis','portfolio development'
+];
+
+const EXPERIENCE_KEYWORDS = [
+  'years of experience','experience','senior','junior','lead',
+  'principal','staff','director','manager','director','head of',
+  'vp','cto','cfo','ceo','cto','cfo',
+  'certified','certification','certificate',
+  'degree','bachelor','master','phd','mba',
+  'bs','ms','ba','ma',
+  'license','registered','licensed','accredited',
+  'required','preferred','nice to have','bonus',
+  'must','should','preferred','qualified',
+  '2+ years','3+ years','5+ years','7+ years','10+ years',
+  'entry level','mid level','mid-level','senior level','senior-level',
+  'executive','c-suite','fellow','distinguished',
+  'itil','pmp','pe','psm','csa','cloud',
+  'aws certified','azure certified','gcp certified',
+  'ci/cd','scrum master','product owner','agile coach',
+  'cfa','cpa','cma','cia','enrolled agent',
+  'registered nurse','rn','lpn','cnm','np','pa','md','phd','rd',
+  'bar admitted','bar passage','state bar','admitted to bar',
+  'pe license','esq','j.d.','ll.m',
+  'phd','ph.d.','master','bachelor','associates','associates degree',
+  'ph.d.','ph.d.',
+  'bilingual','multilingual','fluency','fluent in',
+  'remote','hybrid','on-site','onsite',
+  'travel','willing to travel','relocation',
+  'security clearance','clearance','secret clearance',
+  'top secret','polygraph','diplomatic clearance',
+  'salary range','compensation','benefits','equity','stock options'
+];
+
+// Common stop words (not important for keyword matching)
+const STOP_WORDS = new Set([
+  'the','a','an','and','or','but','in','on','at','to','for',
+  'of','with','by','from','is','are','was','were','be','been',
+  'being','have','has','had','do','does','did','will','would',
+  'could','should','may','might','shall','can','need','dare',
+  'i','me','my','we','our','you','your','he','him','his',
+  'she','her','it','its','they','them','their','this','that',
+  'these','those','what','which','who','whom','where','when',
+  'how','why','not','no','nor','so','if','then','than','too',
+  'very','just','about','above','after','again','against',
+  'all','am','as','because','before','between','both','each',
+  'few','further','get','got','go','gone','going','here','however',
+  'into','itself','let','made','make','makes','making','more',
+  'most','much','must','myself','off','other','ourself','out',
+  'own','same','sheer','some','such','through','throughout',
+  'up','us','us',' ourselves','while','yours','yourself',
+  'also','back','down','ever','get','getting','just','look',
+  'looking','long','like','work','works','working','worked'
+]);
+
+// Common function words that shouldn't be keywords
+const FUNCTION_WORDS = new Set([
+  'the','a','an','is','are','was','were','be','been','being',
+  'have','has','had','do','does','did','will','would','could',
+  'should','may','might','shall','can','need','dare','ought',
+  'used to','going to','it','its','his','her','their','our',
+  'your','my','myself','himself','herself','themselves',
+  'ourself','yourself','itself','itself','itself',
+  'this','that','these','those','who','whom','which','what',
+  'where','when','how','why','if','then','than','too',
+  'so','very','just','only','also','even','still','yet',
+  'more','most','less','little','much','many','some','any',
+  'all','each','every','both','few','several','other','another',
+  'such','same','over','under','between','through','during',
+  'before','after','above','below','up','down','out','off',
+  'again','further','then','once','here','there','back','now',
+  'already','ever','never','still','again','once','also','yet',
+  'but','nor','for','and','or','yet','so','because','although',
+  'though','while','whereas','unless','until','whenever',
+  'however','therefore','thus','hence','according','regarding',
+  'concerning','regarding','relating to','related to',
+  'including','includes','included','excluding','excluding',
+  'without','within','among','along','across','around',
+  'against','toward','towards','upon','into','onto','past',
+  'beyond','inside','outside','inside','outside','inside','outside',
+  'across','alongside','amid','amidst','atop','beneath','below',
+  'beyond','by','near','nearby','past','through','throughout',
+  'toward','towards','under','underneath','underway','up',
+  'upon','vis-à-vis','via','within','without'
+]);
+
+const SKILL_PREFIXES = [
+  'proficient in','experienced with','knowledge of','expertise in',
+  'skilled in','familiar with','ability to','ability to',
+  'ability to','ability to','ability to',
+  'proficient in','experienced with','knowledge of','expertise in',
+  'skilled in','familiar with',
+  'strong understanding of','deep knowledge of','working knowledge of',
+  'working knowledge of','working knowledge of',
+  'including','includes','including','including',
+  'including','including','including',
+  'such as','such as','such as',
+  'such as','such as','such as',
+  'including','including','including','including',
+  'such as','such as','such as'
+];
+
+function normalizeText(text) {
+  return text.toLowerCase().replace(/[^a-z0-9\s\-+.]/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+function extractMultiWordSkills(text, skillList) {
+  const norm = normalizeText(text);
+  const found = new Set();
+  for (const skill of skillList) {
+    const pattern = new RegExp('\\b' + skill.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'i');
+    if (pattern.test(text)) {
+      found.add(skill);
+    }
+  }
+  return found;
+}
+
+function extractShortSkills(text) {
+  const norm = normalizeText(text);
+  const found = new Set();
+  const singleWords = ['python','sql','javascript','java','c++','c#','html','css',
+    'git','docker','kubernetes','aws','azure','gcp','react','node','php',
+    'ruby','rails','linux','unix','macos','windows','android','ios'];
+  for (const word of singleWords) {
+    const pattern = new RegExp('\\b' + word + '\\b', 'i');
+    if (pattern.test(text)) {
+      found.add(word);
+    }
+  }
+  return found;
+}
+
+function extractExperience(text) {
+  const found = [];
+  const norm = normalizeText(text);
+  const expPatterns = [
+    /(\d+)\+?\s*(year|yr)\s*(of\s*)?(experience)/gi,
+    /(senior|junior|mid[-\s]?level|lead|principal|staff|director|vp|cto|cfo)/gi,
+    /(bachelor|master|phd|mba|bs|ms|ba|ma)/gi,
+    /(certified|certification|certificate)/gi,
+    /(licensed|license|registered|accredited)/gi,
+    /(bilingual|multilingual|fluent)/gi,
+  ];
+  for (const pattern of expPatterns) {
+    let match;
+    while ((match = pattern.exec(text)) !== null) {
+      found.push(match[0].trim());
+    }
+  }
+  // Extract specific year requirements
+  const yearReqs = text.match(/(\d+)\+?\s*(year|yr)s?\s*\(?\+?\)?\s*(of\s*)?(experience|exp)/gi);
+  if (yearReqs) {
+    yearReqs.forEach(r => found.push(r.trim()));
+  }
+  return found;
+}
+
+function extractQualifications(text) {
+  const found = [];
+  const norm = normalizeText(text);
+  const qualPatterns = [
+    /((?:bachelor|master|phd|mba|bs|ms|ba|ma))\s*(in\s*([^,.\n]+))?/gi,
+    /((?:certified|registered|licensed|accredited))\s*(\w+\s*){0,3}/gi,
+    /((?:pmp|itil|cfa|cpa|cma|psm|csa|pe))\b/gi,
+  ];
+  for (const pattern of qualPatterns) {
+    let match;
+    while ((match = pattern.exec(text)) !== null) {
+      const val = match[1].trim();
+      if (val.length > 1 && !STOP_WORDS.has(val.toLowerCase())) {
+        found.push(val);
+      }
+    }
+  }
+  return found;
+}
+
+function extractFromPrefixes(text) {
+  const found = [];
+  for (const prefix of SKILL_PREFIXES) {
+    const regex = new RegExp(prefix + '\\s+([^.,;:]+)', 'gi');
+    let match;
+    while ((match = regex.exec(text)) !== null) {
+      const skill = match[1].trim().split(/\s+/).slice(0, 4).join(' ');
+      if (skill.length > 2 && !STOP_WORDS.has(skill.split(' ')[0].toLowerCase())) {
+        found.push(skill);
+      }
+    }
+  }
+  return found;
+}
+
+// ─── Analysis Engine ──────────────────────────────────────────
+
+function analyzeText(jobText, resumeText) {
+  const jobNorm = normalizeText(jobText);
+  const resumeNorm = normalizeText(resumeText);
+
+  // Extract all skills from job
+  const multiWord = extractMultiWordSkills(jobText, COMMON_SKILLS);
+  const shortSkills = extractShortSkills(jobText);
+  const experience = extractExperience(jobText);
+  const qualifications = extractQualifications(jobText);
+  const fromPrefixes = extractFromPrefixes(jobText);
+
+  // Build unified keyword list
+  const allKeywords = new Map();
+  for (const kw of multiWord) { allKeywords.set(kw, { type: 'skill', priority: 'high' }); }
+  for (const kw of shortSkills) { allKeywords.set(kw, { type: 'skill', priority: 'high' }); }
+  for (const kw of experience) { allKeywords.set(kw, { type: 'experience', priority: 'high' }); }
+  for (const kw of qualifications) { allKeywords.set(kw, { type: 'qualification', priority: 'medium' }); }
+  for (const kw of fromPrefixes) { allKeywords.set(kw, { type: 'skill', priority: 'medium' }); }
+
+  // Remove keywords that appear in resume
+  const matched = [];
+  const missing = [];
+
+  for (const [keyword, meta] of allKeywords) {
+    const pattern = new RegExp('\\b' + keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'i');
+    if (pattern.test(resumeText)) {
+      matched.push({ keyword, ...meta });
+    } else {
+      missing.push({ keyword, ...meta });
+    }
+  }
+
+  // Sort missing by priority
+  const priorityOrder = { high: 0, medium: 1, low: 2 };
+  missing.sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]);
+
+  // Calculate score
+  const totalKeywords = matched.length + missing.length;
+  const matchRate = totalKeywords > 0 ? (matched.length / totalKeywords) : 0;
+  const weightedScore = totalKeywords > 0 ? Math.round(matchRate * 100) : 0;
+
+  // Generate suggestions
+  const suggestions = [];
+  const highPriorityMissing = missing.filter(m => m.priority === 'high').slice(0, 6);
+  for (const item of highPriorityMissing) {
+    let suggestion = '';
+    if (item.type === 'skill') {
+      suggestion = `Add or highlight experience with "${item.keyword}" — this is a top requirement for the role.`;
+    } else if (item.type === 'experience') {
+      suggestion = `This role requires "${item.keyword}". If you have this experience, make sure it's prominent in your resume.`;
+    } else if (item.type === 'qualification') {
+      suggestion = `"${item.keyword}" is listed as a qualification. If you have this, ensure it's clearly stated.`;
+    }
+    if (suggestion) suggestions.push(suggestion);
+  }
+
+  // Add positive reinforcement for matched skills
+  if (matched.length > 3) {
+    const topMatched = matched.slice(0, 3).map(m => m.keyword).join(', ');
+    suggestions.push(`Good match on key skills: ${topMatched}. Make sure these are prominent in your summary and experience sections.`);
+  }
+
+  // Score label
+  let scoreLabel;
+  if (weightedScore >= 80) scoreLabel = 'Excellent Match';
+  else if (weightedScore >= 60) scoreLabel = 'Strong Match';
+  else if (weightedScore >= 40) scoreLabel = 'Moderate Match';
+  else if (weightedScore >= 20) scoreLabel = 'Below Target';
+  else scoreLabel = 'Needs Significant Work';
+
+  return {
+    score: weightedScore,
+    matchRate,
+    matched: matched.sort((a, b) => a.keyword.length - b.keyword.length),
+    missing: missing.slice(0, 12),
+    suggestions,
+    scoreLabel,
+    totalKeywords,
+    matchedCount: matched.length,
+  };
+}
+
+function displayResults(result) {
+  const resultsDiv = document.getElementById('results');
+  const emptyInfo = document.getElementById('emptyInfo');
+  resultsDiv.classList.remove('hidden');
+  emptyInfo.style.display = 'none';
+
+  // Score card
+  const circumference = 2 * Math.PI * 50;
+  const offset = circumference - (result.score / 100) * circumference;
+  let scoreColor = result.score >= 70 ? '#059669' : result.score >= 45 ? '#d97706' : '#dc2626';
+
+  document.getElementById('scoreCard').innerHTML = `
+    <div class="score-ring" style="background: var(--bg);">
+      <svg width="120" height="120" viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="50" fill="none" stroke="#e2e8f0" stroke-width="8"/>
+        <circle cx="60" cy="60" r="50" fill="none" stroke="${scoreColor}" stroke-width="8"
+          stroke-dasharray="${circumference}" stroke-dashoffset="${offset}"
+          stroke-linecap="round" style="transition: stroke-dashoffset 1s ease-out;"/>
+      </svg>
+      <span style="position:relative;z-index:1;font-size:28px;font-weight:700;color:${scoreColor}">${result.score}%</span>
+    </div>
+    <div class="score-label">${result.scoreLabel}</div>
+    <div class="score-sub">${result.matchedCount} / ${result.totalKeywords} keywords matched</div>
+  `;
+
+  // Matched tags
+  const matchedDiv = document.getElementById('matchedTags');
+  matchedDiv.innerHTML = result.matched.map(kw =>
+    `<span class="kw-tag matched">${kw.keyword}</span>`
+  ).join('') || '<span style="font-size:12px;color:var(--muted)">No keywords matched — your resume may need significant tailoring for this role.</span>';
+
+  // Missing tags
+  const missingDiv = document.getElementById('missingTags');
+  missingDiv.innerHTML = result.missing.map(kw =>
+    `<span class="kw-tag ${kw.priority === 'high' ? 'missing' : 'missed-opt'}">${kw.keyword}</span>`
+  ).join('') || '<span style="font-size:12px;color:var(--success);">No critical keywords missing — great match!</span>';
+
+  // Suggestions
+  const suggDiv = document.getElementById('suggestions');
+  if (result.suggestions.length > 0) {
+    suggDiv.innerHTML = result.suggestions.map(s =>
+      `<div class="suggestion">${s}</div>`
+    ).join('');
+  } else {
+    suggDiv.innerHTML = '<div class="suggestion">Your resume looks well-matched to this job description. Consider tailoring it further for ATS optimization.</div>';
+  }
+
+  // Scroll to results
+  resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function analyze() {
+  const jobText = document.getElementById('jobDesc').value.trim();
+  const resumeText = document.getElementById('resumeText').value.trim();
+  const btn = document.getElementById('analyzeBtn');
+
+  if (!jobText || !resumeText) {
+    alert('Please enter both a job description and your resume text.');
+    return;
+  }
+
+  // Show loading state
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Analyzing...';
+
+  setTimeout(() => {
+    const result = analyzeText(jobText, resumeText);
+    displayResults(result);
+
+    btn.disabled = false;
+    btn.innerHTML = '🔍 Analyze Resume Match';
+  }, 300);
+}
+
+// Allow Ctrl+Enter to analyze
+document.addEventListener('keydown', (e) => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+    analyze();
+  }
+});
+</script>
+
+</body>
+</html>
