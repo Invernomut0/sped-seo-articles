@@ -32,6 +32,12 @@ Step-by-step checklist with embedded AI prompts. Covers all 6 mandatory IEP sect
 ### [Best AI Tools for SPED Teachers 2026](best-ai-tools-sped-teachers-2026.md)
 Honest review of tools SPED teachers actually use + 10 free prompts.
 
+### [SPED Quick-Start Landing Page](sped-quick-start-landing.html)
+Just $1 — 10 essential IEP prompts for PLOP, goals, SDI, accommodations, transition, parent communication. Preview 6 sample prompts.
+
+### [Grant Writing AI Tools Comparison (2026)](grant-ai-tools-2026.html)
+Subscription vs. one-time pricing for grant professionals. Real costs from 5 tools (Grantsman $49/mo, Grantium $39/mo, ChatGPT Plus $20/mo) vs. our $39 one-time system.
+
 ---
 
 ## 💰 Paid Systems (One-Time Purchase)
