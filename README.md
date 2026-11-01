@@ -42,14 +42,14 @@ Subscription vs. one-time pricing for grant professionals. Real costs from 5 too
 
 ## 💰 Paid Systems (One-Time Purchase)
 
-### [SPED IEP AI System — $29 (was $49)](https://invernomut02.gumroad.com/l/uplrym)
+### [SPED IEP AI System — $29 (was $49)](https://invernomuto2.gumroad.com/l/uplrym)
 **32 prompts. 3-phase workflow (Intake → Draft → Compliance). Notion case manager. 5 databases.**
 Use code **SPED50** for 50% off → **$14.50**. This is our lowest price ever.
 
-### [SPED Teacher Quick-Start — $1](https://invernomut02.gumroad.com/l/sped-quick-start)
+### [SPED Teacher Quick-Start — $1](https://invernomuto2.gumroad.com)
 10 essential prompts. The perfect entry point. Links to the full $49 system.
 
-### [Complete AI Bundle — $99](https://invernomut02.gumroad.com/l/bundle)
+### [Complete AI Bundle — $99](https://invernomuto2.gumroad.com)
 All 3 systems (RE + SPED + CRE) = 92 prompts. Save $58. Use code **SPED50** → **$49.50**.
 
 ---
@@ -57,7 +57,7 @@ All 3 systems (RE + SPED + CRE) = 92 prompts. Save $58. Use code **SPED50** → 
 ## 🔗 Cross-Links
 - [RE Listing System](https://invernomuto2.gumroad.com/l/geffl) — 32 prompts for MLS-ready listings. Use code **LAUNCH50** → $29.
 - [CRE Listing System](https://invernomuto2.gumroad.com/l/vegate) — 30 prompts for CRE descriptions + investment analysis. Use code **CRE50** → $39.
-- [E-commerce Listing System](https://invernomut02.gumroad.com/l/ecommerce-product-listing) — 32 prompts for Amazon, Shopify, Etsy. 3-phase workflow.
+- [E-commerce Listing System](https://invernomuto2.gumroad.com) — 32 prompts for Amazon, Shopify, Etsy. 3-phase workflow.
 
 ---
 
