@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Amazon Product Title Optimizer (2026) — Checklist & Compliance Scanner</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.6; }
+  .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+  header { text-align: center; padding: 40px 20px 20px; }
+  header h1 { font-size: 1.8em; color: #58a6ff; margin-bottom: 8px; }
+  header p { color: #8b949e; font-size: 1.05em; }
+  .badge { display: inline-block; background: #238636; color: #fff; padding: 3px 10px; border-radius: 12px; font-size: 0.8em; margin-bottom: 10px; }
+  .card { background: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 24px; margin: 20px 0; }
+  label { display: block; font-weight: 600; color: #c9d1d9; margin-bottom: 8px; font-size: 0.95em; }
+  textarea { width: 100%; min-height: 120px; background: #0d1117; border: 1px solid #30363d; border-radius: 8px; color: #c9d1d9; padding: 14px; font-size: 1em; font-family: inherit; resize: vertical; }
+  textarea:focus { outline: none; border-color: #58a6ff; box-shadow: 0 0 0 3px rgba(88,166,255,0.15); }
+  .btn { display: inline-block; background: #238636; color: #fff; border: none; padding: 12px 32px; border-radius: 8px; font-size: 1em; font-weight: 600; cursor: pointer; margin-top: 12px; }
+  .btn:hover { background: #2ea043; }
+  .result { display: none; margin-top: 16px; }
+  .result.show { display: block; }
+  .score-bar { height: 12px; background: #21262d; border-radius: 6px; margin: 12px 0; overflow: hidden; }
+  .score-fill { height: 100%; border-radius: 6px; transition: width 0.5s ease; }
+  .check-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid #21262d; }
+  .check-icon { font-size: 1.2em; flex-shrink: 0; margin-top: 2px; }
+  .check-pass { color: #3fb950; }
+  .check-warn { color: #d29922; }
+  .check-fail { color: #f85149; }
+  .check-text { font-size: 0.95em; }
+  .check-detail { color: #8b949e; font-size: 0.85em; margin-top: 2px; }
+  .cta { text-align: center; padding: 30px; background: linear-gradient(135deg, #1a1f2e, #161b22); border: 1px solid #30363d; border-radius: 12px; margin: 30px 0; }
+  .cta h3 { color: #58a6ff; margin-bottom: 10px; }
+  .cta p { color: #8b949e; font-size: 0.95em; margin-bottom: 15px; }
+  .cta a { display: inline-block; background: #58a6ff; color: #fff; text-decoration: none; padding: 12px 28px; border-radius: 8px; font-weight: 600; }
+  .cta a:hover { background: #79c0ff; }
+  footer { text-align: center; color: #484f58; padding: 30px 20px; font-size: 0.85em; }
+  .char-count { text-align: right; color: #8b949e; font-size: 0.85em; margin-top: 4px; }
+  .char-count.over { color: #f85149; }
+  .char-count.ok { color: #3fb950; }
+  .section-title { color: #c9d1d9; font-size: 1.1em; font-weight: 600; margin-bottom: 14px; }
+  .tag { display: inline-block; background: #1f6feb22; color: #58a6ff; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; margin: 2px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <span class="badge">FREE TOOL — NO SIGNUP</span>
+    <h1>Amazon Product Title Optimizer</h1>
+    <p>Check your product title against Amazon's 2026 guidelines. 75-character limit, forbidden claims, keyword optimization — all in one scan.</p>
+  </header>
+
+  <div class="card">
+    <label for="titleInput">Paste your Amazon product title below:</label>
+    <textarea id="titleInput" placeholder="e.g., Organic Green Tea Bags - 100 Count - Antioxidant Rich - Non-GMO - Best For Weight Loss - Premium Japanese Matcha"></textarea>
+    <div class="char-count" id="charCount">0 characters (limit: 75)</div>
+
+    <button class="btn" onclick="analyze()">Scan Title Compliance</button>
+
+    <div class="result" id="results">
+      <div class="section-title">Compliance Score</div>
+      <div class="score-bar"><div class="score-fill" id="scoreFill"></div></div>
+      <div id="scoreText" style="font-size:1.2em; font-weight:600; margin: 8px 0;"></div>
+      <div class="section-title">Detailed Checklist (2026 Amazon Guidelines)</div>
+      <div id="checks"></div>
+    </div>
+  </div>
+
+  <div class="cta">
+    <h3>Want to list products that actually rank?</h3>
+    <p>Our 32-prompt E-commerce AI System handles Amazon titles, Shopify conversions, and Etsy SEO — all platform-compliant. One-time purchase. No subscription.</p>
+    <a href="https://invernomuto2.gumroad.com/l/ecommerce-product-listing" target="_blank" rel="noopener">Get the Full System →</a>
+    <p style="margin-top:10px; font-size:0.85em;">Also available for: <a href="https://invernomuto2.gumroad.com/l/nuajfos" target="_blank" rel="noopener">Paralegal</a> · <a href="https://invernomuto2.gumroad.com/l/xdkni" target="_blank" rel="noopener">Wedding</a> · <a href="https://invernomuto2.gumroad.com/l/geffl" target="_blank" rel="noopener">Real Estate</a></p>
+  </div>
+
+  <div class="card">
+    <div class="section-title">2026 Amazon Title Rules (Updated July 2026 COSMO Update)</div>
+    <p style="color:#8b949e; margin-bottom:12px;">Amazon tightened title rules in July 2026 as part of the COSMO ranking update. Here's what changed:</p>
+    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px;">
+      <span class="tag">75 char max</span>
+      <span class="tag">No subjective claims</span>
+      <span class="tag">Brand first</span>
+      <span class="tag">Key product attributes</span>
+    </div>
+    <ul style="color:#8b949e; padding-left:20px; font-size:0.95em;">
+      <li style="margin-bottom:6px;"><strong style="color:#c9d1d9;">Max 75 characters</strong> — Titles beyond this are truncated in search (COSMO update, July 2026). Affects ~900K+ sellers.</li>
+      <li style="margin-bottom:6px;"><strong style="color:#c9d1d9;">Subjective claims banned</strong> — "best", "best seller", "top rated", "free", "guaranteed", "perfect" can get listing suppressed.</li>
+      <li style="margin-bottom:6px;"><strong style="color:#c9d1d9;">Brand must be first word</strong> — If your brand exists, it goes at the start.</li>
+      <li style="margin-bottom:6px;"><strong style="color:#c9d1d9;">Keywords still matter</strong> — COSMO understands search intent, not just keywords. Place the main search term naturally.</li>
+      <li style="margin-bottom:6px;"><strong style="color:#c9d1d9;">All Caps only for acronyms</strong> — "USA" ok, "BEST" not.</li>
+      <li style="margin-bottom:6px;"><strong style="color:#c9d1d9;">Promotional text banned</strong> — "Free shipping", "Sale", "50% off" = suppressed.</li>
+    </ul>
+  </div>
+
+  <footer>
+    <p>Free tool by Invernomut0. Educational resource — verify current Amazon guidelines independently. Product titles tested here follow Amazon's July 2026 COSMO update.</p>
+  </footer>
+</div>
+
+<script>
+const FORBIDDEN = ['best', 'best seller', 'bestselling', 'top rated', 'top selling', 'free shipping', 'free', 'guaranteed', 'guarantee', 'perfect', 'perfectly', '100%', 'no.1', 'number 1', 'sale', 'sale now', 'limited time', 'clearance', 'hot', 'cheap', 'disposable', 'promotional', 'bonus', 'extra free', 'buy one get one'];
+
+function analyze() {
+  const title = document.getElementById('titleInput').value.trim();
+  if (!title) { alert('Please enter a product title.'); return; }
+
+  const results = document.getElementById('results');
+  results.classList.add('show');
+
+  const checks = document.getElementById('checks');
+  checks.innerHTML = '';
+
+  let score = 0;
+  let total = 8;
+  const passed = [];
+  const warned = [];
+  const failed = [];
+
+  // 1. Length check
+  const len = title.length;
+  if (len <= 75) {
+    score++; passed.push('✅ Title length: ' + len + '/75 characters — within Amazon limit');
+  } else {
+    failed.push('❌ Title too long: ' + len + '/75 characters. Amazon truncates at 75 (COSMO update July 2026). You lose ' + (len - 75) + ' chars of important keywords.');
+  }
+
+  // 2. Character count display
+  const cc = document.getElementById('charCount');
+  cc.textContent = len + ' characters (limit: 75)';
+  cc.className = 'char-count' + (len > 75 ? ' over' : len > 60 ? ' ok' : ' ok');
+
+  // 3. Forbidden claims
+  const lower = title.toLowerCase();
+  let hasForbidden = [];
+  for (const w of FORBIDDEN) {
+    if (new RegExp('\\b' + w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'i').test(lower)) {
+      hasForbidden.push(w);
+    }
+  }
+  if (hasForbidden.length === 0) {
+    score++; passed.push('✅ No forbidden subjective claims detected. Good compliance.');
+  } else {
+    failed.push('❌ Forbidden claims found: "' + hasForbidden.join('", "') + '". These can get your listing suppressed by Amazon. Remove them.');
+  }
+
+  // 4. All-caps words
+  const words = title.split(/\s+/);
+  const allCapsWords = words.filter(w => w.length > 2 && w === w.toUpperCase() && /[A-Z]/.test(w));
+  if (allCapsWords.length === 0) {
+    score++; passed.push('✅ No unnecessary ALL CAPS words. Complies with 2026 guidelines.');
+  } else {
+    warned.push('⚠️ ALL CAPS words detected: ' + allCapsWords.join(', ') + '. Amazon allows only acronyms (USA, UK, HD). Convert to title case.');
+  }
+
+  // 5. Special characters
+  const specialChars = title.match(/[^a-zA-Z0-9\s\-,./']/g);
+  if (!specialChars || specialChars.length === 0) {
+    passed.push('✅ Clean characters — no symbols or special characters that might confuse Amazon\'s parser.');
+  } else {
+    warned.push('⚠️ Special characters found: ' + [...new Set(specialChars)].join(', ') + '. Amazon may strip these. Use commas, hyphens, or pipes instead.');
+  }
+
+  // 6. Keyword density / keyword stuff
+  const wordFreq = {};
+  const stopWords = new Set(['the','a','an','for','and','with','by','to','of','in','on','at','is','are','was','were','this','that','these','those','my','our','your','their','from','or','but','not','be','has','have','had','been','being','it','its','more','most','very','much','than','each','every','all','any','some','such','no','nor','so','if','as','up','out','about','into','over','after']);
+  words.forEach(w => { const lw = w.toLowerCase().replace(/[^a-z]/g,''); if (lw.length > 2 && !stopWords.has(lw)) wordFreq[lw] = (wordFreq[lw]||0) + 1; });
+  const maxFreq = Math.max(...Object.values(wordFreq), 0);
+  const stuffyWords = Object.entries(wordFreq).filter(([,c]) => c > 2).map(([w]) => w);
+  if (stuffyWords.length === 0) {
+    score++; passed.push('✅ No keyword stuffing detected. Natural keyword distribution looks good.');
+  } else {
+    warned.push('⚠️ Repeated keywords (3+ times): ' + stuffyWords.slice(0,5).join(', ') + '. Amazon may de-duplicate repeated terms. Spread keywords across bullets and description instead.');
+  }
+
+  // 7. Brand at start
+  const firstWord = words[0].replace(/[^a-zA-Z]/g,'').toLowerCase();
+  if (firstWord.length > 0 && words[0].charAt(0) === words[0].charAt(0).toUpperCase()) {
+    score++; passed.push('✅ First word is capitalized — consistent with brand-first formatting.');
+  } else {
+    warned.push('⚠️ First word is lowercase. Amazon expects brand name first (capitalized). Consider starting with your brand.');
+  }
+
+  // 8. Has numbers/product identifiers
+  const hasNumbers = /\d/.test(title);
+  if (hasNumbers) {
+    score++; passed.push('✅ Contains numbers/sizes — helps Amazon\'s COSMO understand product specifics.');
+  } else {
+    warned.push('⚠️ No size/quantity info. Adding "Count", "Pack", "Size" etc. helps Amazon classify and rank your product.');
+  }
+
+  // Render results
+  const scorePct = Math.round(score / total * 100);
+  const fill = document.getElementById('scoreFill');
+  fill.style.width = scorePct + '%';
+  fill.style.background = scorePct >= 75 ? '#3fb950' : scorePct >= 50 ? '#d29922' : '#f85149';
+
+  document.getElementById('scoreText').innerHTML = scorePct + '/100' + (scorePct >= 75 ? ' <span class="check-pass">— Strong Compliance</span>' : scorePct >= 50 ? ' <span class="check-warn">— Needs Improvement</span>' : ' <span class="check-fail">— Multiple Issues</span>');
+
+  const renderChecks = (items, container) => {
+    items.forEach(text => {
+      const div = document.createElement('div');
+      div.className = 'check-item';
+      const type = text.startsWith('✅') ? 'pass' : text.startsWith('⚠️') ? 'warn' : 'fail';
+      const icon = text.startsWith('✅') ? '<span class="check-icon check-pass">✓</span>' : text.startsWith('⚠️') ? '<span class="check-icon check-warn">!</span>' : '<span class="check-icon check-fail">✗</span>';
+      div.innerHTML = icon + '<div class="check-text"><div>' + text.substring(2) + '</div></div>';
+      container.appendChild(div);
+    });
+  };
+
+  passed.forEach(t => { const div = document.createElement('div'); div.className = 'check-item'; div.innerHTML = '<span class="check-icon check-pass">✓</span><div class="check-text"><div>' + t.substring(2) + '</div></div>'; checks.appendChild(div); });
+  warned.forEach(t => { const div = document.createElement('div'); div.className = 'check-item'; div.innerHTML = '<span class="check-icon check-warn">!</span><div class="check-text"><div>' + t.substring(2) + '</div></div>'; checks.appendChild(div); });
+  failed.forEach(t => { const div = document.createElement('div'); div.className = 'check-item'; div.innerHTML = '<span class="check-icon check-fail">✗</span><div class="check-text"><div>' + t.substring(2) + '</div></div>'; checks.appendChild(div); });
+
+  // Scroll to results
+  results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Live char count
+document.getElementById('titleInput').addEventListener('input', function() {
+  const len = this.value.length;
+  const cc = document.getElementById('charCount');
+  cc.textContent = len + ' characters (limit: 75)';
+  cc.className = 'char-count' + (len > 75 ? ' over' : len > 60 ? ' ok' : ' ok');
+});
+</script>
+</body>
+</html>
